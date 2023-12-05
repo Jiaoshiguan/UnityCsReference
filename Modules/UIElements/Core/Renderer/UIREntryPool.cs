@@ -8,6 +8,10 @@ using Unity.Jobs.LowLevel.Unsafe;
 
 namespace UnityEngine.UIElements.UIR
 {
+    // 该类是 ImplicitPool 的包装。 它是为了 UI Toolkit 网格生成的工作化而引入的。
+    // 获取条目是线程安全的（仅来自主线程和作业工作者）。
+    // 给定线程有一个从共享 ImplicitPool 获取数据的子池。 当子池为空时，获取一批条目 来自隐式池。
+
     // This class is a wrapper over ImplicitPool. It was introduced for the jobification of the UI Toolkit mesh
     // generation. Getting an entry is thread-safe (from main thread and job workers only). A given thread has a
     // sub-pool which feeds from the shared ImplicitPool. When the sub-pool is empty, a batch of entries is acquired

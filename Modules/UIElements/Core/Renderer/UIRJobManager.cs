@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
+// 包含了具体的Jobs，例如 mesh 拷贝、mesh 转换、
 namespace UnityEngine.UIElements.UIR
 {
     class JobManager : IDisposable

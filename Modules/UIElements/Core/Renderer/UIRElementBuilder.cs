@@ -6,6 +6,7 @@ using System;
 
 namespace UnityEngine.UIElements.UIR
 {
+    // 元素构建基类
     abstract class BaseElementBuilder
     {
         public abstract bool RequiresStencilMask(VisualElement ve);
@@ -129,6 +130,7 @@ namespace UnityEngine.UIElements.UIR
             return UIRUtility.IsRoundRect(ve) || UIRUtility.IsVectorImageBackground(ve);
         }
 
+        // 背景绘制
         protected override void DrawVisualElementBackground(MeshGenerationContext mgc)
         {
             var ve = mgc.visualElement;
@@ -294,6 +296,7 @@ namespace UnityEngine.UIElements.UIR
             }
         }
 
+        // 边框绘制
         protected override void DrawVisualElementBorder(MeshGenerationContext mgc)
         {
             var ve = mgc.visualElement;
@@ -334,6 +337,7 @@ namespace UnityEngine.UIElements.UIR
             }
         }
 
+        // Stencil Mask 绘制
         protected override void DrawVisualElementStencilMask(MeshGenerationContext mgc)
         {
             if (UIRUtility.IsVectorImageBackground(mgc.visualElement))
@@ -345,6 +349,7 @@ namespace UnityEngine.UIElements.UIR
                 GenerateStencilClipEntryForRoundedRectBackground(mgc);
         }
 
+        // 生成模板检测，主要是处理圆角部分
         static void GenerateStencilClipEntryForRoundedRectBackground(MeshGenerationContext mgc)
         {
             var ve = mgc.visualElement;
@@ -388,6 +393,7 @@ namespace UnityEngine.UIElements.UIR
                 rp.rect.height -= resolvedStyle.paddingTop + resolvedStyle.paddingBottom;
             }
 
+            // 依靠计算完成的圆角值，
             mgc.meshGenerator.DrawRectangle(rp);
         }
 

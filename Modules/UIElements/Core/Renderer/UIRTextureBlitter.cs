@@ -8,6 +8,7 @@ using Unity.Profiling;
 
 namespace UnityEngine.UIElements.UIR
 {
+    // 这里是一次draw call可以绘制8个贴图的具体实现。
     /// <summary>
     /// This class allows to queue blit commands and apply them up to 8 at a time later on.
     /// </summary>

@@ -11,6 +11,7 @@ using UnityEngine.Bindings;
 
 namespace UnityEngine.UIElements
 {
+    // 用来画 2D线 和 2D图形 的接口
     [NativeHeader("Modules/UIElements/Core/Native/Renderer/UIPainter2D.bindings.h")]
     internal static class UIPainter2D
     {

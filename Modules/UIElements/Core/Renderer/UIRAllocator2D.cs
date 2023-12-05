@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
+// 使用内存分配器，实现了
 namespace UnityEngine.UIElements.UIR
 {
     class Allocator2D

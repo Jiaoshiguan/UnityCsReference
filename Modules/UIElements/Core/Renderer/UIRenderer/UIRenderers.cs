@@ -34,6 +34,7 @@ namespace UnityEngine.UIElements.UIR
         public float sharpness;
     }
 
+    // 定义了渲染 Command 的类型
     internal enum CommandType
     {
         Draw,

@@ -96,6 +96,7 @@ namespace UnityEngine.UIElements.UIR
             return slot;
         }
 
+        // 这里看看，他是怎么使用TextureId的
         public void Bind(TextureId id, float sdfScale, float sharpness, int slot, MaterialPropertyBlock mat, CommandList commandList = null)
         {
             Texture tex = textureRegistry.GetTexture(id);

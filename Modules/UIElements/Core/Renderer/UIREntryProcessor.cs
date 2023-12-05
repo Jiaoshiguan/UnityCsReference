@@ -169,6 +169,8 @@ namespace UnityEngine.UIElements.UIR
             Debug.Assert(!m_IsDrawingMask);
         }
 
+        // 这里是对那些用于绘制的Entry对象，进行处理的地方。
+        // 它最终走到了CovertMeshJob
         void ProcessRange(int first, int last)
         {
             List<Entry> entries = m_PreProcessor.flattenedEntries;

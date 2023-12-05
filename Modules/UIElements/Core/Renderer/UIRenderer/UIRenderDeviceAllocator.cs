@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
+// 定义了一个具体的内存分配器
 namespace UnityEngine.UIElements.UIR
 {
     internal struct Alloc
@@ -193,6 +194,7 @@ namespace UnityEngine.UIElements.UIR
             return stats;
         }
 
+        // 定义了分配策略，但目前只有一个实现。
         #region Allocation policies
         Block BestFitFindAvailableBlock(uint size)
         {

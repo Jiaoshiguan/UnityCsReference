@@ -6,27 +6,44 @@ using System;
 using System.Runtime.CompilerServices;
 using Unity.Collections;
 
+// Entry看起来跟Command有点像
 namespace UnityEngine.UIElements.UIR
 {
     enum EntryType
     {
+        // 绘制实心mesh
         DrawSolidMesh,
+        // 绘制有贴图的mesh
         DrawTexturedMesh,
+        // 绘制有贴图的mesh，跳过atlas
         DrawTexturedMeshSkipAtlas,
+        // https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/FontAssetsSDF.html
+        // 绘制 Signed Distance Field 的字体 mesh
         DrawSdfTextMesh,
+        // 绘制渐变
         DrawGradients,
+        // 立即绘制
         DrawImmediate,
+        // 立即绘制剔除
         DrawImmediateCull,
+        // 绘制子元素
         DrawChildren,
+        // 开始模板检测
         BeginStencilMask,
+        // 结束模板检测
         EndStencilMask,
+        // 抛出模板检测
         PopStencilMask,
+        // 推送裁剪矩形
         PushClippingRect,
+        // 抛出裁剪矩形
         PopClippingRect,
+        // 推送
         PushScissors,
         PopScissors,
         PushGroupMatrix,
         PopGroupMatrix,
+        // 推送 render texture
         PushRenderTexture,
         BlitAndPopRenderTexture,
         PushDefaultMaterial,

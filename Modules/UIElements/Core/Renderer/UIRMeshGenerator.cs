@@ -671,6 +671,7 @@ namespace UnityEngine.UIElements.UIR
             m_RenderModes.Clear();
         }
 
+        // 通过顶点、索引、材质，绘制出text
         void DrawTextInfo(List<NativeSlice<Vertex>> vertices, List<NativeSlice<ushort>> indices, List<Material> materials, List<GlyphRenderMode> renderModes)
         {
             if (vertices == null)

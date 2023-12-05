@@ -4,6 +4,7 @@
 
 using System;
 
+// 对 IntPtr 做了一次空检查的封装
 namespace UnityEngine.UIElements
 {
     internal struct SafeHandleAccess

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine.UIElements.UIR;
 
+// 图集的实现
 namespace UnityEngine.UIElements
 {
     abstract class AtlasBase

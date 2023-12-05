@@ -537,6 +537,8 @@ namespace UnityEngine.UIElements
         }
 
         private RenderHints m_RenderHints;
+
+        // 请求渲染和改变标志。要注意：渲染器可能会忽略它们，读取它并不意味着它有效。
         /// <summary>
         /// Requested render hints and change flags. Note that the renderer can ignore them: reading them does not
         /// guarantee that they are effective.

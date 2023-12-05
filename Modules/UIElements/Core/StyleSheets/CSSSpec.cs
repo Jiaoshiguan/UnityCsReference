@@ -17,6 +17,7 @@ namespace UnityEngine.UIElements.StyleSheets
         const int classSelectorWeight = 10;
         const int idSelectorWeight = 100;
 
+        // 获取选择器的类型 id\type\class
         public static int GetSelectorSpecificity(string selector)
         {
             StyleSelectorPart[] parts;

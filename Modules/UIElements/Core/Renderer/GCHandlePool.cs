@@ -6,6 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
+// 定义了一个容纳GCHandle的池，但总感觉没有什么实际用处。
 namespace UnityEngine.UIElements.UIR
 {
     class GCHandlePool : IDisposable

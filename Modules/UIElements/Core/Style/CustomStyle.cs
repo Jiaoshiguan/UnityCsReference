@@ -6,6 +6,8 @@ using System;
 
 namespace UnityEngine.UIElements
 {
+    // 研究一下是什么东西，该怎么用。试试能不能与 [hover音乐]、[hover事件埋点] 所关联
+
     /// <summary>
     /// Define a custom style property for an element to be retrieved with <see cref="CustomStyleResolvedEvent"/>.
     /// </summary>

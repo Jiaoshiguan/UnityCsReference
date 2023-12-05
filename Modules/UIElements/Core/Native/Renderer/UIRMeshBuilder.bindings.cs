@@ -12,6 +12,7 @@ using UnityEngine.Bindings;
 namespace UnityEngine.UIElements
 {
     [NativeHeader("Modules/UIElements/Core/Native/Renderer/UIRMeshBuilder.bindings.h")]
+    // Mesh 构造器
     internal static class MeshBuilderNative
     {
         public const float kEpsilon = 0.001f;
@@ -22,6 +23,7 @@ namespace UnityEngine.UIElements
             public Color32 pageAndID;
         }
 
+        // 边框参数
         public struct NativeBorderParams
         {
             public Rect rect;
@@ -36,6 +38,7 @@ namespace UnityEngine.UIElements
             public float rightWidth;
             public float bottomWidth;
 
+            // 标记了圆角
             public Vector2 topLeftRadius;
             public Vector2 topRightRadius;
             public Vector2 bottomRightRadius;
@@ -47,6 +50,7 @@ namespace UnityEngine.UIElements
             internal NativeColorPage bottomColorPage;
         }
 
+        // Rect 参数
         public struct NativeRectParams
         {
             public Rect rect;
@@ -55,6 +59,7 @@ namespace UnityEngine.UIElements
             public Color color;
             public ScaleMode scaleMode;
 
+            // 标记了圆角
             public Vector2 topLeftRadius;
             public Vector2 topRightRadius;
             public Vector2 bottomRightRadius;
@@ -88,10 +93,16 @@ namespace UnityEngine.UIElements
             public int meshFlags;
         }
 
+        // 生成边框
         [ThreadSafe] public static extern MeshWriteDataInterface MakeBorder(NativeBorderParams borderParams, float posZ);
+        // 生成实体的矩形
         [ThreadSafe] public static extern MeshWriteDataInterface MakeSolidRect(NativeRectParams rectParams, float posZ);
+        // 生成有纹理的矩形
         [ThreadSafe] public static extern MeshWriteDataInterface MakeTexturedRect(NativeRectParams rectParams, float posZ);
+        // 构造矢量图形，拉伸背景
         [ThreadSafe] public static extern MeshWriteDataInterface MakeVectorGraphicsStretchBackground(Vertex[] svgVertices, UInt16[] svgIndices, float svgWidth, float svgHeight, Rect targetRect, Rect sourceUV, ScaleMode scaleMode, Color tint, NativeColorPage colorPage);
+        // 构造矢量图形，9切片背景
+        // LTRB 是 left top right bottom
         [ThreadSafe] public static extern MeshWriteDataInterface MakeVectorGraphics9SliceBackground(Vertex[] svgVertices, UInt16[] svgIndices, float svgWidth, float svgHeight, Rect targetRect, Vector4 sliceLTRB, Color tint, NativeColorPage colorPage);
     }
 }

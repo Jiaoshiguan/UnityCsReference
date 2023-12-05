@@ -34,8 +34,10 @@ namespace UnityEngine.UIElements
     }
 
     [NativeHeader("Modules/UIElements/Core/Native/TextNative.bindings.h")]
+    // 文本
     internal static class TextNative
     {
+        // 获取光标位置
         public static Vector2 GetCursorPosition(TextNativeSettings settings, Rect rect, int cursorIndex)
         {
             if (settings.font == null)
@@ -47,6 +49,7 @@ namespace UnityEngine.UIElements
             return DoGetCursorPosition(settings, rect, cursorIndex);
         }
 
+        // 计算文本宽度
         public static float ComputeTextWidth(TextNativeSettings settings)
         {
             if (settings.font == null)
@@ -61,6 +64,7 @@ namespace UnityEngine.UIElements
             return DoComputeTextWidth(settings);
         }
 
+        // 计算文本高度
         public static float ComputeTextHeight(TextNativeSettings settings)
         {
             if (settings.font == null)
@@ -75,6 +79,7 @@ namespace UnityEngine.UIElements
             return DoComputeTextHeight(settings);
         }
 
+        // 获取顶点
         public static unsafe NativeArray<TextVertex> GetVertices(TextNativeSettings settings)
         {
             int vertexCount = 0;
@@ -89,6 +94,7 @@ namespace UnityEngine.UIElements
             return array;
         }
 
+        // 获取偏移
         public static Vector2 GetOffset(TextNativeSettings settings, Rect screenRect)
         {
             if (settings.font == null)
@@ -102,6 +108,7 @@ namespace UnityEngine.UIElements
             return DoGetOffset(settings, screenRect);
         }
 
+        // 计算文本缩放
         public static float ComputeTextScaling(Matrix4x4 worldMatrix, float pixelsPerPoint)
         {
             var axisX = new Vector3(worldMatrix.m00, worldMatrix.m10, worldMatrix.m20);
@@ -111,18 +118,23 @@ namespace UnityEngine.UIElements
         }
 
         [FreeFunction(Name = "TextNative::ComputeTextWidth")]
+        // 计算文本宽度
         private static extern float DoComputeTextWidth(TextNativeSettings settings);
 
         [FreeFunction(Name = "TextNative::ComputeTextHeight")]
+        // 计算文本高度
         private static extern float DoComputeTextHeight(TextNativeSettings settings);
 
         [FreeFunction(Name = "TextNative::GetCursorPosition")]
+        // 获取焦点坐标
         private static extern Vector2 DoGetCursorPosition(TextNativeSettings settings, Rect rect, int cursorPosition);
 
         [FreeFunction(Name = "TextNative::GetVertices")]
+        // 生成顶点
         private static extern void GetVertices(TextNativeSettings settings, IntPtr buffer, int vertexSize, ref int vertexCount);
 
         [FreeFunction(Name = "TextNative::GetOffset")]
+        // 获取偏移
         private static extern Vector2 DoGetOffset(TextNativeSettings settings, Rect rect);
     }
 }

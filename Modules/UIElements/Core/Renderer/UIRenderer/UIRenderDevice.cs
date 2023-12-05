@@ -14,6 +14,9 @@ using System.Runtime.InteropServices;
 using Unity.Profiling;
 using Unity.Collections.LowLevel.Unsafe;
 
+// 是一个渲染管理器
+// 定义了UI渲染相关的对象如何进行分配，释放
+// 以及如何处理Mesh、如何调用和生成RenderChain
 namespace UnityEngine.UIElements.UIR
 {
     [StructLayout(LayoutKind.Sequential)]
@@ -22,6 +25,8 @@ namespace UnityEngine.UIElements.UIR
         public Vector4 v0, v1, v2;
     }
 
+    // 存储在这里的值可以在this的持有者后面更新对象。
+    // 因此，永远不要将其转换为结构体，否则就不能自动执行碎片整理和地址排序优化
     // The values stored here could be updated behind the back of the holder of this
     // object. Hence, never turn this into a struct or else we can't do automatic
     // defragmentation and address ordering optimizations
@@ -34,6 +39,7 @@ namespace UnityEngine.UIElements.UIR
         internal uint updateAllocID; // If not 0, the alloc here points to a temporary location managed by an update record with the said ID
     }
 
+    // UI 渲染装置，用于
     internal class UIRenderDevice : IDisposable
     {
         internal struct AllocToUpdate
@@ -160,7 +166,9 @@ namespace UnityEngine.UIElements.UIR
             m_IndexToVertexCountRatio = (float)initialIndexCapacity / (float)initialVertexCapacity;
             m_IndexToVertexCountRatio = Mathf.Max(m_IndexToVertexCountRatio, 2);
 
+            // 延迟释放的 alloc 列表
             m_DeferredFrees = new List<List<AllocToFree>>((int)k_MaxQueuedFrameCount);
+            // 待更新的 alloc 列表
             m_Updates = new List<List<AllocToUpdate>>((int)k_MaxQueuedFrameCount);
             for (int i = 0; i < k_MaxQueuedFrameCount; i++)
             {
@@ -1029,6 +1037,8 @@ namespace UnityEngine.UIElements.UIR
                         uint curFenceVal = *fence;
                         if (((int)(newFenceVal - curFenceVal)) <= 0) // This is the same test as in GfxDeviceWorker::WaitOnCPUFence(). Handles wrap around.
                             break; // Our newFenceVal is already older than the current one, so keep the current
+                        // 这里引入了一个新的API：InterLocked
+                        // 它为多个线程共享的变量提供【原子操作】
                         int cmpOldVal = System.Threading.Interlocked.CompareExchange(ref *((int*)fence), (int)newFenceVal, (int)curFenceVal);
                         if (cmpOldVal == curFenceVal)
                             break; // The exchange succeeded, now newFenceVal is stored atomically in (*fence)
@@ -1281,6 +1291,7 @@ namespace UnityEngine.UIElements.UIR
 
         #region Internals
 
+        // 在引擎 Update 时，处理资源释放列表
         private static void ProcessDeviceFreeQueue()
         {
             s_MarkerFree.Begin();
@@ -1288,6 +1299,7 @@ namespace UnityEngine.UIElements.UIR
             if (m_SynchronousFree)
                 Utility.SyncRenderThread();
 
+            // 从释放列表中逐个销毁
             var freeNode = m_DeviceFreeQueue.First;
             while (freeNode != null)
             {

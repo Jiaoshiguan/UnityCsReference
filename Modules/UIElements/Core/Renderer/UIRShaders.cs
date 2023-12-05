@@ -4,6 +4,7 @@
 
 namespace UnityEngine.UIElements.UIR
 {
+    // 这里的shader在 builtin data 中可以找到
     static class Shaders
     {
         public static readonly string k_AtlasBlit;

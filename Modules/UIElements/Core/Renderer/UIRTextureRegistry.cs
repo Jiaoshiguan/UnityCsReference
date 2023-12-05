@@ -67,6 +67,7 @@ namespace UnityEngine.UIElements
 
     class TextureRegistry
     {
+        // 贴图复用机制
         struct TextureInfo
         {
             public Texture texture;

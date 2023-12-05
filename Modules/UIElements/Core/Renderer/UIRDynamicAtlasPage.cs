@@ -5,6 +5,7 @@
 using System;
 using UnityEngine.UIElements.UIR;
 
+// 动态图集中的一个图集页面
 namespace UnityEngine.UIElements
 {
     class DynamicAtlasPage : IDisposable

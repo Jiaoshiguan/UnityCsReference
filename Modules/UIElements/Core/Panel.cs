@@ -157,6 +157,7 @@ namespace UnityEngine.UIElements
         DynamicColor = 1 << 3,
     }
 
+    // 定义了渲染标记
     //keep in sync with RenderHints in C++ (Modules/UIElements/RenderHints.h)
     [Flags]
     internal enum RenderHints

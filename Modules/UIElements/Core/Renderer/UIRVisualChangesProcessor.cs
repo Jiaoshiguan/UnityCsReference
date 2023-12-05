@@ -53,6 +53,7 @@ namespace UnityEngine.UIElements.UIR
                 m_Processors = new List<EntryProcessor>(4);
             }
 
+            // 调度网格生成任务
             public void ScheduleMeshGenerationJobs()
             {
                 m_ElementBuilder.ScheduleMeshGenerationJobs(m_MeshGenerationContext);

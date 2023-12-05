@@ -14,6 +14,8 @@ using Unity.Profiling;
 
 namespace UnityEngine.UIElements
 {
+    // 控制 UITK 中 Text 绘制相关任务的类
+    // 里面使用了JobSystem处理了文本的解析和网格生成。
     internal class UITKTextJobSystem
     {
         class ManagedJobData
@@ -128,6 +130,7 @@ namespace UnityEngine.UIElements
             mgc.AddMeshGenerationCallback(GenerateTextJobified, managedJobsHandle, MeshGenerationCallbackType.Work, true);
         }
 
+        // PrepareTextJobData 将 uss 解析为 TextGenerationSettings 。
         struct PrepareTextJobData : IJobParallelFor
         {
             public GCHandle managedJobDataHandle;
@@ -180,6 +183,8 @@ namespace UnityEngine.UIElements
             mgc.AddMeshGenerationCallback(AddDrawEntries, textJob, MeshGenerationCallbackType.Work, true);
         }
 
+        // GenerateTextJobData 使用 TextGenerationSettings 获取到 TextInfo，其中包含了 MeshInfo 。
+        // 随后将 MeshInfo 转换为了用于 UI 的顶点信息 UIRVertex。
         struct GenerateTextJobData : IJobParallelFor
         {
             public GCHandle managedJobDataHandle;
@@ -252,6 +257,7 @@ namespace UnityEngine.UIElements
                     int quadCount = vertexCount >> 2;
                     int indexCount = quadCount * 6;
 
+                    // 注意这里根据字体添加了材质
                     materials.Add(meshInfo.material);
                     renderModes.Add(meshInfo.glyphRenderMode);
 
